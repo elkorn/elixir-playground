@@ -14,3 +14,7 @@ IO.puts c
 # Omit part of a value in a match
 [h | _] = [1, 2, 3]
 IO.puts h
+
+# the pin (`^`) operator allows matching against a variable's value
+# ^x = 2 # match error
+^x = 1
