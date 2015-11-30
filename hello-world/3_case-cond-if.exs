@@ -48,11 +48,34 @@ if true do
 end
 
 unless false do
-  raise("As well as reverse logic to make life more difficult")
+  IO.puts "As well as reverse logic to make life more difficult"
 end
 
 if nil do
   raise "This will not fail"
 else
-  IO.input "else is supported"
+  IO.puts "else is supported"
 end
+
+# `do/end` are convenience for passing a group of expressions to `do:` blocks
+IO.puts(
+if true do
+  a = 1 + 2
+  a + 10
+end
+)
+
+# Here, we are using keyword lists
+IO.puts(
+if true, do: (
+          a = 1+2
+          a+10
+        )
+)
+
+IO.puts if false, do: :this, else: :that
+
+# Parens are required here, `do/end` is bound to the outermost function call.
+is_number(if true do
+  1+2
+end)
