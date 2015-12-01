@@ -3,7 +3,7 @@ defmodule Print do
   end
 
   def print([result|tail]) do
-    IO.puts result
+    IO.inspect result
     print tail
   end
 end

@@ -6,7 +6,8 @@ statements = [
   Enum.reduce(1..3, 0, &+/2),
   1..100_000 |> Enum.map(&(&1 * 3)) |> Enum.filter(odd?) |> Enum.sum,
   Enum.sum(Enum.filter(Enum.map(1..100_000, &(&1 * 3)), odd?)),
-  1..100_000 |> Stream.map(&(&1 * 3))
+  Enum.take(1..100_000 |> Stream.map(&(&1 * 3)), 10),
+  Enum.take(Stream.cycle([1,2,3]), 10)
 ]
 
 Print.print statements
