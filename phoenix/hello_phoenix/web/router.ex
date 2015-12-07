@@ -20,8 +20,19 @@ defmodule HelloPhoenix.Router do
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
     # Sets up a standard CRUD range of API endpoints - check `mix phoenix.routes`.
-    resources "users", UserController
+    resources "users", UserController do
+      resources "posts", PostController, only: [:index, :show, :new]
+    end
     resources "comments", CommentController, except: [:delete]
+
+    resources "/reviews", ReviewController
+  end
+
+  # `as` is used to differentiate path helpers from the ones for normal review resources.
+  scope "/admin", as: :admin do
+    pipe_through :browser
+
+    resources "/reviews", HelloPhoenix.Admin.ReviewController
   end
 
   # Other scopes may use custom stacks.
